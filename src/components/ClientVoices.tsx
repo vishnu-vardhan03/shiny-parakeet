@@ -115,7 +115,11 @@ export function ClientVoices() {
       {/* Giant Background Watermark Text "VOICES OF TRUST" */}
       <div className="absolute top-[28%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none select-none z-0 overflow-hidden leading-none">
         <span 
+<<<<<<< HEAD
           className="text-brand-gradient-flow font-black uppercase tracking-[0.05em] opacity-45"
+=======
+          className="font-black text-zinc-200/50 uppercase tracking-[0.05em]"
+>>>>>>> 931f703bc60bfd0a0a14ef5856aed5c013f11bb4
           style={{ fontSize: "clamp(64px, 12vw, 160px)" }}
         >
           Voices of trust

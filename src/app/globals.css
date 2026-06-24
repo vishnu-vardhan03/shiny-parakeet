@@ -35,11 +35,14 @@
 }
 
 :root {
+<<<<<<< HEAD
   --site-background:
     radial-gradient(ellipse 70% 55% at 4% 28%, rgba(45, 212, 191, .15), transparent 64%),
     radial-gradient(ellipse 60% 58% at 76% 18%, rgba(125, 211, 252, .12), transparent 66%),
     radial-gradient(ellipse 65% 65% at 94% 72%, rgba(167, 139, 250, .14), transparent 66%),
     #04060f;
+=======
+>>>>>>> 931f703bc60bfd0a0a14ef5856aed5c013f11bb4
   --radius: 0.75rem;
   --background: #0a0e23;
   --foreground: #f8fafc;
@@ -71,8 +74,12 @@
   * { border-color: var(--color-border); }
   html { scroll-behavior: auto; }
   body {
+<<<<<<< HEAD
     background: var(--site-background);
     background-attachment: fixed;
+=======
+    background-color: var(--color-background);
+>>>>>>> 931f703bc60bfd0a0a14ef5856aed5c013f11bb4
     color: var(--color-foreground);
     font-family: var(--font-display);
     -webkit-font-smoothing: antialiased;
@@ -208,7 +215,11 @@ html.lenis, html.lenis body { height: auto; }
 
 .hero-ecosystem-orbit {
   position: absolute;
+<<<<<<< HEAD
   right: 2rem;
+=======
+  right: -6rem;
+>>>>>>> 931f703bc60bfd0a0a14ef5856aed5c013f11bb4
   top: 50%;
   width: min(48vw, 42rem);
   aspect-ratio: 1;
@@ -247,6 +258,7 @@ html.lenis, html.lenis body { height: auto; }
 
 @keyframes hero-orbit { to { transform: rotate(360deg); } }
 
+<<<<<<< HEAD
 @keyframes ecosystem-orbit {
   from { transform: rotate(0deg) translateX(2rem) rotate(0deg); }
   to { transform: rotate(360deg) translateX(2rem) rotate(-360deg); }
@@ -283,6 +295,8 @@ footer {
   background-color: transparent !important;
 }
 
+=======
+>>>>>>> 931f703bc60bfd0a0a14ef5856aed5c013f11bb4
 @media (max-width: 768px) {
   .hero-ecosystem-orbit { right: -9rem; top: 43%; width: 34rem; opacity: .35; }
   .hero-ecosystem-glow { width: 20rem; height: 20rem; }

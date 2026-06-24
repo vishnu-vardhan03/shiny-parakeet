@@ -1,13 +1,25 @@
 "use client";
 
+<<<<<<< HEAD
 import { useEffect } from "react";
 
+=======
+>>>>>>> 931f703bc60bfd0a0a14ef5856aed5c013f11bb4
 import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/Hero";
 import { OurVision } from "@/components/OurVision";
 import { Results } from "@/components/Results";
+<<<<<<< HEAD
 import { Process } from "@/components/Process";
 import { UseCases } from "@/components/UseCases";
+=======
+import { ResultsTimeline } from "@/components/ResultsTimeline";
+import { Academy } from "@/components/Academy";
+import { Process } from "@/components/Process";
+import { UseCases } from "@/components/UseCases";
+import { VisionMission } from "@/components/VisionMission";
+import { DeliveryModels } from "@/components/DeliveryModels";
+>>>>>>> 931f703bc60bfd0a0a14ef5856aed5c013f11bb4
 import { HowItWorks } from "@/components/HowItWorks";
 import { Clients } from "@/components/Clients";
 import { ClientVoices } from "@/components/ClientVoices";
@@ -16,6 +28,7 @@ import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 
 export default function HomeClient() {
+<<<<<<< HEAD
   useEffect(() => {
     const cards = Array.from(document.querySelectorAll<HTMLElement>("main section .grid > article"));
     cards.forEach((card, index) => {
@@ -38,4 +51,7 @@ export default function HomeClient() {
   }, []);
 
   return <><Nav /><main><Hero /><OurVision /><Results /><Process /><UseCases /><HowItWorks /><Clients /><ClientVoices /><BlogSection /><Contact /></main><Footer /></>;
+=======
+  return <><Nav /><main><Hero /><OurVision /><Results /><ResultsTimeline /><Academy /><Process /><UseCases /><VisionMission /><DeliveryModels /><HowItWorks /><Clients /><ClientVoices /><BlogSection /><Contact /></main><Footer /></>;
+>>>>>>> 931f703bc60bfd0a0a14ef5856aed5c013f11bb4
 }

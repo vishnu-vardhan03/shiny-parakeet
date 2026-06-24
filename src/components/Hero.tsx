@@ -31,7 +31,11 @@ export function Hero() {
         <span className="hero-ecosystem-orbit-ring hero-ecosystem-orbit-ring-two" />
       </div>
 
+<<<<<<< HEAD
       <div className="relative z-10 mx-auto flex min-h-[calc(100vh-13rem)] w-full max-w-[1200px] flex-col justify-center lg:-translate-x-8">
+=======
+      <div className="relative z-10 mx-auto flex min-h-[calc(100vh-13rem)] w-full max-w-[1200px] flex-col justify-center">
+>>>>>>> 931f703bc60bfd0a0a14ef5856aed5c013f11bb4
         <motion.span
           variants={reveal}
           initial="hidden"
@@ -56,7 +60,11 @@ export function Hero() {
           className="max-w-6xl font-bold leading-[0.98] tracking-[-0.045em]"
         >
           <span className="block max-w-4xl text-[clamp(2rem,3.4vw,4rem)] leading-[1.12]">
+<<<<<<< HEAD
             The new way to run
+=======
+            Adopting the new age technology innovation to the proven professional services…
+>>>>>>> 931f703bc60bfd0a0a14ef5856aed5c013f11bb4
           </span>
           <span className="relative mt-5 block min-h-[1.3em] max-w-5xl pb-3 text-[clamp(2.4rem,5vw,5.6rem)] leading-[1.12]">
             <AnimatePresence mode="wait">
@@ -82,7 +90,11 @@ export function Hero() {
           className="mt-10 flex flex-col items-start gap-8"
         >
           <p className="max-w-2xl text-base leading-relaxed text-white/75 md:text-xl">
+<<<<<<< HEAD
             4AT pairs AI-powered workflows with senior practitioners in one ecosystem — so finance teams stop choosing between firms that bill by the hour and AI tools they can't sign off on.
+=======
+            4AT combines AI-powered workflows with human expertise to deliver accounting, advisory, and finance support with greater speed, control, and confidence.
+>>>>>>> 931f703bc60bfd0a0a14ef5856aed5c013f11bb4
           </p>
 
           <div className="flex shrink-0 flex-wrap gap-3">
@@ -102,12 +114,15 @@ export function Hero() {
               See How It Works
             </a>
           </div>
+<<<<<<< HEAD
 
           <div className="flex w-full max-w-full flex-col divide-y divide-white/15 overflow-hidden rounded-xl border border-white/15 bg-white/[0.035] text-sm font-medium text-white/75 backdrop-blur-sm sm:w-fit sm:flex-row sm:divide-x sm:divide-y-0">
             <span className="px-5 py-3.5">99.7% reconciliation accuracy</span>
             <span className="px-5 py-3.5">Senior CPAs on every engagement</span>
             <span className="px-5 py-3.5">Live across 10+ countries</span>
           </div>
+=======
+>>>>>>> 931f703bc60bfd0a0a14ef5856aed5c013f11bb4
         </motion.div>
       </div>
     </section>
