@@ -1,0 +1,289 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap');
+@import "tailwindcss" source(none);
+@source "..";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-black: #0a0e23;
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+}
+
+:root {
+  --site-background:
+    radial-gradient(ellipse 70% 55% at 4% 28%, rgba(45, 212, 191, .15), transparent 64%),
+    radial-gradient(ellipse 60% 58% at 76% 18%, rgba(125, 211, 252, .12), transparent 66%),
+    radial-gradient(ellipse 65% 65% at 94% 72%, rgba(167, 139, 250, .14), transparent 66%),
+    #04060f;
+  --radius: 0.75rem;
+  --background: #0a0e23;
+  --foreground: #f8fafc;
+  --card: oklch(0.08 0 0);
+  --card-foreground: oklch(1 0 0);
+  --popover: oklch(0.08 0 0);
+  --popover-foreground: oklch(1 0 0);
+  --primary: oklch(1 0 0);
+  --primary-foreground: oklch(0.05 0 0);
+  --secondary: oklch(0.15 0 0);
+  --secondary-foreground: oklch(1 0 0);
+  --muted: oklch(0.15 0 0);
+  --muted-foreground: oklch(0.7 0 0);
+  --accent: oklch(0.18 0 0);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.6 0.22 27);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 10%);
+  --ring: oklch(1 0 0 / 30%);
+}
+
+.dark {
+  --background: #0a0e23;
+  --foreground: oklch(1 0 0);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: auto; }
+  body {
+    background: var(--site-background);
+    background-attachment: fixed;
+    color: var(--color-foreground);
+    font-family: var(--font-display);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+}
+
+/* Grid background */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+/* Glow line animation */
+@keyframes glow-sweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+.glow-line {
+  position: relative;
+  height: 1px;
+  width: 100%;
+  background: rgba(255,255,255,0.08);
+  overflow: hidden;
+}
+.glow-line::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent);
+  filter: blur(2px);
+  animation: glow-sweep 6s linear infinite;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+.float { animation: float 6s ease-in-out infinite; }
+
+/* Glass card */
+.glass {
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.text-balance { text-wrap: balance; }
+
+/* Lenis */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* Background Orb Globs */
+.orbs { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+.orb { position: absolute; border-radius: 50%; filter: blur(70px); }
+.orb1 { width: 420px; height: 420px; background: rgba(124,58,237,.35); top: -120px; left: -90px; }
+.orb2 { width: 460px; height: 460px; background: rgba(14,165,233,.25); top: 40%; right: -130px; }
+.orb3 { width: 400px; height: 400px; background: rgba(20,184,166,.2); bottom: 0; left: 33%; }
+.glow-blue { background: rgba(56,189,248,.3); }
+
+/* Shared 4AT mark, matching the teal → sky → violet treatment in the supplied HTML. */
+@keyframes logo-spectrum {
+  from { background-position: 0% 50%; }
+  to { background-position: 300% 50%; }
+}
+.brand-logo-gradient {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: block;
+  background: linear-gradient(100deg, #2dd4bf, #7dd3fc, #a78bfa, #c084fc, #7dd3fc, #2dd4bf);
+  background-size: 300% 100%;
+  animation: logo-spectrum 7s linear infinite;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
+
+/* Brand emphasis used for the most important words and section labels. */
+.text-brand-gradient {
+  background: linear-gradient(90deg, #2dd4bf 0%, #7dd3fc 48%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-brand-gradient-flow {
+  background: linear-gradient(90deg, #2dd4bf, #7dd3fc, #a78bfa, #c084fc, #7dd3fc, #2dd4bf);
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: text-gradient-flow 6s linear infinite;
+}
+
+@keyframes text-gradient-flow {
+  from { background-position: 0% center; }
+  to { background-position: 300% center; }
+}
+
+.text-brand-accent {
+  color: #7dd3fc;
+}
+
+.hero-ecosystem-grid {
+  position: absolute;
+  inset: 0;
+  opacity: .18;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, .05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, .05) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+.hero-ecosystem-glow {
+  position: absolute;
+  width: 34rem;
+  height: 34rem;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: .22;
+}
+
+.hero-ecosystem-glow-left { left: -14rem; top: 22%; background: #2dd4bf; }
+.hero-ecosystem-glow-right { right: -14rem; top: 8%; background: #a78bfa; }
+
+.hero-ecosystem-orbit {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  width: min(48vw, 42rem);
+  aspect-ratio: 1;
+  transform: translateY(-50%);
+  opacity: .65;
+}
+
+.hero-ecosystem-orbit-core {
+  position: absolute;
+  inset: 25%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 36% 30%, rgba(125, 211, 252, .78), rgba(45, 212, 191, .22) 28%, rgba(167, 139, 250, .1) 50%, transparent 70%);
+  box-shadow: 0 0 7rem rgba(125, 211, 252, .38);
+}
+
+.hero-ecosystem-orbit-ring {
+  position: absolute;
+  inset: 0;
+  border: 1.5px solid rgba(125, 211, 252, .32);
+  border-top-color: #7dd3fc;
+  border-right-color: #2dd4bf;
+  border-radius: 50%;
+  box-shadow: 0 0 28px rgba(125, 211, 252, .12), inset 0 0 28px rgba(125, 211, 252, .06);
+  animation: hero-orbit 22s linear infinite;
+}
+
+.hero-ecosystem-orbit-ring-two {
+  inset: 13%;
+  border-color: rgba(167, 139, 250, .32);
+  border-bottom-color: #a78bfa;
+  border-left-color: #c084fc;
+  box-shadow: 0 0 28px rgba(167, 139, 250, .14), inset 0 0 28px rgba(167, 139, 250, .07);
+  animation-duration: 15s;
+  animation-direction: reverse;
+}
+
+@keyframes hero-orbit { to { transform: rotate(360deg); } }
+
+@keyframes ecosystem-orbit {
+  from { transform: rotate(0deg) translateX(2rem) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(2rem) rotate(-360deg); }
+}
+
+/* Scroll reveal for cards that live directly inside a section grid. */
+.grid-scroll-card {
+  opacity: 0;
+  transform: translateY(2rem) scale(.985);
+  transition: opacity .65s cubic-bezier(.22, 1, .36, 1) var(--reveal-delay, 0ms), transform .65s cubic-bezier(.22, 1, .36, 1) var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.grid-scroll-card-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grid-scroll-card { opacity: 1; transform: none; transition: none; }
+}
+
+/* Keep the main site as one continuous canvas; cards and glows provide the section hierarchy. */
+main {
+  background: transparent;
+}
+
+main > section {
+  background-color: transparent !important;
+  border-top-width: 0 !important;
+}
+
+footer {
+  background-color: transparent !important;
+}
+
+@media (max-width: 768px) {
+  .hero-ecosystem-orbit { right: -9rem; top: 43%; width: 34rem; opacity: .35; }
+  .hero-ecosystem-glow { width: 20rem; height: 20rem; }
+}
