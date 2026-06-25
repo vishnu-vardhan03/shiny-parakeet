@@ -94,11 +94,10 @@ function FlipCard({ service, index }: FlipCardProps) {
           </a>
         ) : (
           <div
-            className={`absolute inset-0 w-full h-full p-6 rounded-2xl border flex flex-col justify-between overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 ${
-              index === 1
+            className={`absolute inset-0 w-full h-full p-6 rounded-2xl border flex flex-col justify-between overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 ${index === 1
                 ? "bg-[#2dd4bf] border-teal-300/80 text-black"
                 : "bg-[#a78bfa] border-purple-300/80 text-black"
-            }`}
+              }`}
             style={{
               backfaceVisibility: "hidden"
             }}
@@ -111,11 +110,10 @@ function FlipCard({ service, index }: FlipCardProps) {
               <div>
                 <div className="flex justify-between items-center">
                   <span className="font-mono text-black/20 text-3xl font-black">{service.id}</span>
-                  <span className={`text-[9px] uppercase tracking-wider font-bold px-2.5 py-1 rounded border ${
-                    index === 1
+                  <span className={`text-[9px] uppercase tracking-wider font-bold px-2.5 py-1 rounded border ${index === 1
                       ? "bg-teal-950/10 text-teal-950 border-teal-950/20"
                       : "bg-purple-950/10 text-purple-950 border-purple-950/20"
-                  }`}>
+                    }`}>
                     {service.title}
                   </span>
                 </div>
@@ -128,9 +126,8 @@ function FlipCard({ service, index }: FlipCardProps) {
                   {service.desc}
                 </p>
 
-                <div className={`flex items-center gap-1 mt-4 text-xs font-bold uppercase tracking-wider ${
-                  index === 1 ? "text-teal-950" : "text-purple-950"
-                }`}>
+                <div className={`flex items-center gap-1 mt-4 text-xs font-bold uppercase tracking-wider ${index === 1 ? "text-teal-950" : "text-purple-950"
+                  }`}>
                   <span>Flip Card</span>
                   <ArrowUpRight className="size-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </div>
@@ -153,11 +150,10 @@ function FlipCard({ service, index }: FlipCardProps) {
         {/* BACK SIDE */}
         {!isFlipDisabled && (
           <div
-            className={`absolute inset-0 w-full h-full p-6 rounded-2xl border flex flex-col justify-between overflow-hidden shadow-sm ${
-              index === 1
+            className={`absolute inset-0 w-full h-full p-6 rounded-2xl border flex flex-col justify-between overflow-hidden shadow-sm ${index === 1
                 ? "bg-[#2dd4bf] border-teal-300/80 text-black"
                 : "bg-[#a78bfa] border-purple-300/80 text-black"
-            }`}
+              }`}
             style={{
               backfaceVisibility: "hidden",
               transform: "rotateY(180deg)"
@@ -168,11 +164,10 @@ function FlipCard({ service, index }: FlipCardProps) {
             <div className="relative z-10 flex flex-col h-full justify-between">
               {/* Top Details */}
               <div>
-                <span className={`text-[9px] uppercase tracking-wider font-bold px-2.5 py-1 rounded border inline-block ${
-                  index === 1
+                <span className={`text-[9px] uppercase tracking-wider font-bold px-2.5 py-1 rounded border inline-block ${index === 1
                     ? "bg-teal-950/10 text-teal-950 border-teal-950/20"
                     : "bg-purple-950/10 text-purple-950 border-purple-950/20"
-                }`}>
+                  }`}>
                   {service.title}
                 </span>
                 <h4 className="font-black uppercase text-lg text-black mt-3 leading-tight">
@@ -185,20 +180,18 @@ function FlipCard({ service, index }: FlipCardProps) {
 
               {/* Middle Key Focus Areas */}
               <div className="my-3">
-                <p className={`text-[9px] uppercase tracking-widest mb-2 font-bold ${
-                  index === 1 ? "text-teal-950/60" : "text-purple-950/60"
-                }`}>
+                <p className={`text-[9px] uppercase tracking-widest mb-2 font-bold ${index === 1 ? "text-teal-950/60" : "text-purple-950/60"
+                  }`}>
                   KEY FOCUS AREAS
                 </p>
                 <div className="flex flex-wrap gap-1.5">
                   {service.includes.map((inc) => (
                     <span
                       key={inc}
-                      className={`text-[10px] px-2.5 py-1 font-semibold rounded border ${
-                        index === 1
+                      className={`text-[10px] px-2.5 py-1 font-semibold rounded border ${index === 1
                           ? "bg-teal-950/5 border-teal-950/10 text-teal-950"
                           : "bg-purple-950/5 border-purple-950/10 text-purple-950"
-                      }`}
+                        }`}
                     >
                       {inc}
                     </span>
@@ -207,16 +200,14 @@ function FlipCard({ service, index }: FlipCardProps) {
               </div>
 
               {/* Bottom Actions */}
-              <div className={`mt-auto pt-2 border-t ${
-                index === 1 ? "border-teal-950/10" : "border-purple-950/10"
-              }`}>
+              <div className={`mt-auto pt-2 border-t ${index === 1 ? "border-teal-950/10" : "border-purple-950/10"
+                }`}>
                 <a
                   href="#contact"
-                  className={`inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider transition-all px-4 py-2 rounded border ${
-                    index === 1
+                  className={`inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider transition-all px-4 py-2 rounded border ${index === 1
                       ? "text-teal-950 border-teal-950/20 hover:bg-teal-950 hover:text-white"
                       : "text-purple-950 border-purple-950/20 hover:bg-purple-950 hover:text-white"
-                  }`}
+                    }`}
                 >
                   <span>Know more</span>
                   <ArrowUpRight className="size-3.5" />

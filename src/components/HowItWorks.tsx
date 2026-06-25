@@ -1,23 +1,192 @@
-<<<<<<< HEAD
+"use client";
+
+import { useRef, useState, useEffect } from "react";
+
 const steps = [
-  { number: "01", timing: "Day 0", title: "Subscribe", body: "Pick your plan on the website. Pay your first month. That’s the entire procurement cycle.", detail: "No SOW. No legal review. No 6-week sales cycle.", color: "#38bdf8" },
-  { number: "02", timing: "Days 1–7", title: "Onboard", body: "Connector ingests your ERP, ledgers, and policies. Your dedicated pod — AI agents plus senior practitioners — is live within 7 days.", detail: "You don’t change tools. We meet you inside the systems you already use.", color: "#2dd4bf" },
-  { number: "03", timing: "Day 8 onward", title: "We run it", body: "Iris reconciles. Guardian monitors controls. Atlas builds your reports. Senior practitioners review everything before it reaches you.", detail: "You see it all in one dashboard. One bill. One team.", color: "#a78bfa" },
-  { number: "04", timing: "Month 3 and beyond", title: "You scale", body: "Add controls. Add tax. Add audit readiness. Add a vCFO. Every new service line plugs into the same subscription — no new vendor, no new contract, no new onboarding.", detail: "This is where most clients start with one service and end the year running their entire finance function on 4AT.", color: "#38bdf8" },
+  {
+    number: "01",
+    timing: "Day 0",
+    title: "Subscribe",
+    body: "Pick your plan on the website. Pay your first month. That's the entire procurement cycle.",
+    detail: "No SOW. No legal review. No 6-week sales cycle.",
+    color: "#38bdf8",
+  },
+  {
+    number: "02",
+    timing: "Days 1–7",
+    title: "Onboard",
+    body: "Connector ingests your ERP, ledgers, and policies. Your dedicated pod — AI agents plus senior practitioners — is live within 7 days.",
+    detail: "You don't change tools. We meet you inside the systems you already use.",
+    color: "#2dd4bf",
+  },
+  {
+    number: "03",
+    timing: "Day 8 onward",
+    title: "We run it",
+    body: "Iris reconciles. Guardian monitors controls. Atlas builds your reports. Senior practitioners review everything before it reaches you.",
+    detail: "You see it all in one dashboard. One bill. One team.",
+    color: "#a78bfa",
+  },
+  {
+    number: "04",
+    timing: "Month 3 and beyond",
+    title: "You scale",
+    body: "Add controls. Add tax. Add audit readiness. Add a vCFO. Every new service line plugs into the same subscription — no new vendor, no new contract, no new onboarding.",
+    detail: "This is where most clients start with one service and end the year running their entire finance function on 4AT.",
+    color: "#38bdf8",
+  },
 ];
 
 export function HowItWorks() {
-  return <section id="how-it-works" className="relative overflow-hidden border-t border-white/10 bg-[#04060f] px-6 py-20 text-white md:px-12 md:py-28">
-    <div className="absolute inset-0 opacity-20 bg-[linear-gradient(to_right,rgba(255,255,255,.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,.06)_1px,transparent_1px)] bg-[size:80px_80px]" />
-    <div className="relative mx-auto max-w-[1200px]">
-      <div className="mx-auto max-w-4xl text-center"><span className="text-xs font-bold uppercase tracking-[.24em] text-[#7dd3fc]">How an engagement works</span><h2 className="mt-5 text-4xl font-black leading-tight tracking-tight md:text-6xl">Four steps. <span className="text-brand-gradient-flow">No SOW. No procurement cycle.</span></h2><p className="mt-6 text-base leading-relaxed text-white/75 md:text-lg">The teams who switch to 4AT Hybrid all share one thing — they&apos;re done choosing between expensive firms and risky AI. Here&apos;s how it actually goes from &quot;I subscribe&quot; to &quot;my finance team runs hybrid.&quot;</p></div>
-      <div className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-4">{steps.map((step) => <article key={step.number} className="relative min-h-[390px] overflow-hidden rounded-2xl border border-white/20 bg-[#111114] p-7 shadow-[0_24px_70px_rgba(0,0,0,.35)]"><div className="absolute -right-12 -top-12 size-36 rounded-full opacity-30 blur-2xl" style={{ backgroundColor: step.color }} /><div className="relative"><div className="flex items-start justify-between"><b className="text-lg" style={{ color: step.color }}>{step.number}</b><span className="rounded-full border border-white/15 px-3 py-1 text-[10px] font-bold uppercase tracking-[.14em] text-white/65">{step.timing}</span></div><span className="mt-12 block text-[10px] font-bold uppercase tracking-[.2em]" style={{ color: step.color }}>Step {step.number}</span><h3 className="mt-3 text-2xl font-black">{step.title}</h3><p className="mt-5 text-sm leading-relaxed text-white/75">{step.body}</p><p className="mt-5 border-t border-white/10 pt-5 text-sm font-medium leading-relaxed text-white">{step.detail}</p></div></article>)}</div>
-      <div className="mt-10 rounded-2xl border border-white/15 bg-white/[0.035] px-7 py-9 text-center"><span className="text-xs font-bold uppercase tracking-[.2em] text-white/50">What&apos;s standard in every engagement</span><p className="mt-3 text-xl font-semibold text-white md:text-2xl">Every engagement comes with:</p></div>
-      <div className="mt-8 text-center"><a href="#contact" className="inline-flex items-center gap-2 text-sm font-bold text-[#7dd3fc] transition hover:text-white">Ready to see what your engagement would look like? <span aria-hidden="true">→</span></a></div>
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [visibleCount, setVisibleCount] = useState(0);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const el = containerRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const scrolled = -rect.top; // positive once the section enters viewport
+      const scrollable = el.offsetHeight - window.innerHeight;
+      if (scrollable <= 0) return;
+
+      // Map scroll progress → number of cards visible (0 to 4)
+      const progress = Math.min(Math.max(scrolled / scrollable, 0), 1);
+      const count = Math.ceil(progress * steps.length);
+      setVisibleCount(count);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll(); // run once on mount in case page is already scrolled
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    /*
+     * Outer div is (steps.length + 1) × 100vh tall so the user scrolls through
+     * one full viewport per card before the section releases them.
+     */
+    <div ref={containerRef} style={{ height: `${(steps.length + 1) * 100}vh` }}>
+      <section
+        id="how-it-works"
+        className="sticky top-0 h-screen overflow-hidden border-t border-white/10 bg-[#04060f] text-white"
+      >
+        {/* Grid background texture */}
+        <div className="absolute inset-0 opacity-20 bg-[linear-gradient(to_right,rgba(255,255,255,.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,.06)_1px,transparent_1px)] bg-[size:80px_80px]" />
+
+        <div className="relative mx-auto flex h-full max-w-[1400px] flex-col px-6 py-12 md:px-12">
+
+          {/* ── Heading ── */}
+          <div className="max-w-4xl shrink-0">
+            <span className="text-xs font-bold uppercase tracking-[.24em] text-[#7dd3fc]">
+              How an engagement works
+            </span>
+            <h2 className="mt-3 text-3xl font-black leading-tight tracking-tight md:text-5xl">
+              Four steps.{" "}
+              <span className="text-brand-gradient-flow">No SOW. No procurement cycle.</span>
+            </h2>
+            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-white/70 md:text-base">
+              The teams who switch to 4AT Hybrid all share one thing — they&apos;re done
+              choosing between expensive firms and risky AI.
+            </p>
+          </div>
+
+          {/* ── Cards grid — each card fades + slides in as user scrolls ── */}
+          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {steps.map((step, i) => {
+              const isVisible = i < visibleCount;
+              return (
+                <div
+                  key={step.number}
+                  style={{
+                    opacity: isVisible ? 1 : 0,
+                    transform: isVisible
+                      ? "translateY(0) scale(1)"
+                      : "translateY(40px) scale(0.96)",
+                    transition: `opacity 0.55s ease, transform 0.55s ease`,
+                    transitionDelay: isVisible ? `${i * 60}ms` : "0ms",
+                  }}
+                >
+                  <article className="relative min-h-[390px] overflow-hidden rounded-2xl border border-white/20 bg-[#111114] p-6 shadow-[0_24px_70px_rgba(0,0,0,.35)]">
+                    {/* Glow blob */}
+                    <div
+                      className="absolute -right-12 -top-12 size-36 rounded-full opacity-30 blur-2xl"
+                      style={{ backgroundColor: step.color }}
+                    />
+
+                    <div className="relative flex min-h-[350px] flex-col">
+                      {/* Number + timing */}
+                      <div className="flex items-start justify-between">
+                        <b className="text-lg" style={{ color: step.color }}>
+                          {step.number}
+                        </b>
+                        <span className="rounded-full border border-white/15 px-3 py-1 text-[10px] font-bold uppercase tracking-[.14em] text-white/65">
+                          {step.timing}
+                        </span>
+                      </div>
+
+                      {/* Step label */}
+                      <span
+                        className="mt-4 block text-[10px] font-bold uppercase tracking-[.2em]"
+                        style={{ color: step.color }}
+                      >
+                        Step {step.number}
+                      </span>
+
+                      {/* Title */}
+                      <h3 className="mt-2 text-xl font-black text-white">{step.title}</h3>
+
+                      {/* Body */}
+                      <p className="mt-4 text-sm leading-relaxed text-white/75">{step.body}</p>
+
+                      {/* Detail */}
+                      <p className="mt-auto border-t border-white/10 pt-4 text-sm font-medium leading-relaxed text-white">
+                        {step.detail}
+                      </p>
+                    </div>
+                  </article>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* ── Progress dots ── */}
+          <div className="mt-4 flex shrink-0 items-center justify-center gap-2 pb-2">
+            {steps.map((step, i) => (
+              <div
+                key={i}
+                className="h-2 rounded-full transition-all duration-500"
+                style={{
+                  width: i < visibleCount ? 24 : 8,
+                  backgroundColor:
+                    i < visibleCount ? step.color : "rgba(255,255,255,0.2)",
+                }}
+              />
+            ))}
+          </div>
+
+          {/* ── Scroll hint (shown before any card appears) ── */}
+          <div
+            className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 transition-opacity duration-500"
+            style={{ opacity: visibleCount === 0 ? 1 : 0 }}
+          >
+            <span className="text-xs font-bold uppercase tracking-widest text-white/40">
+              Scroll to explore
+            </span>
+            <svg
+              className="animate-bounce text-white/30"
+              width={16}
+              height={16}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path d="M12 5v14M5 12l7 7 7-7" />
+            </svg>
+          </div>
+        </div>
+      </section>
     </div>
-  </section>;
+  );
 }
-=======
-const steps=[['01','Subscribe','Pick your plan on the website. No SOW, no procurement cycle.','#7dd3fc'],['02','Onboard in days','Connector ingests your ERP, ledgers, and policies. Your dedicated pod (AI agents + senior leads) is live within 7 days.','#2dd4bf'],['03','We run it','Iris reconciles, Guardian monitors controls, Atlas reports, your humans review. One dashboard.','#a78bfa'],['04','You scale','Add service lines without adding headcount or new vendors.','#7dd3fc']];
-export function HowItWorks(){return <section className="border-t border-white/10 bg-[#04060f] px-6 py-24 text-white"><div className="mx-auto max-w-[1400px]"><div className="mx-auto max-w-4xl text-center"><span className="text-[#7dd3fc] text-xs font-bold uppercase tracking-[.24em]">How it works</span><h2 className="mt-5 text-4xl font-black md:text-6xl">From workflow friction to <span className="text-brand-gradient">AI-powered execution.</span></h2><p className="mt-6 text-white/75">4AT starts with how your finance team actually works today, identifies where AI can remove manual effort and improve visibility, and then helps implement the right mix of product, expertise, and training.</p></div><div className="mt-14 grid gap-5 md:grid-cols-4">{steps.map(([n,t,d,c])=><article key={n} className="relative min-h-[330px] overflow-hidden rounded-[2rem] border border-white/25 bg-[#111114] p-7 shadow-[0_24px_70px_rgba(0,0,0,.35)]"><div className="absolute -right-12 -top-12 size-36 rounded-full opacity-30 blur-2xl" style={{backgroundColor:c}}/><b style={{color:c}}>{n}</b><div className="relative mt-14"><span className="text-[10px] font-bold uppercase tracking-[.2em]" style={{color:c}}>Step {n}</span><h3 className="mt-3 text-2xl font-bold">{t}</h3><p className="mt-5 text-white/70">{d}</p></div></article>)}</div></div></section>}
->>>>>>> 931f703bc60bfd0a0a14ef5856aed5c013f11bb4

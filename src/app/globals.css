@@ -35,14 +35,11 @@
 }
 
 :root {
-<<<<<<< HEAD
   --site-background:
     radial-gradient(ellipse 70% 55% at 4% 28%, rgba(45, 212, 191, .15), transparent 64%),
     radial-gradient(ellipse 60% 58% at 76% 18%, rgba(125, 211, 252, .12), transparent 66%),
     radial-gradient(ellipse 65% 65% at 94% 72%, rgba(167, 139, 250, .14), transparent 66%),
     #04060f;
-=======
->>>>>>> 931f703bc60bfd0a0a14ef5856aed5c013f11bb4
   --radius: 0.75rem;
   --background: #0a0e23;
   --foreground: #f8fafc;
@@ -74,12 +71,8 @@
   * { border-color: var(--color-border); }
   html { scroll-behavior: auto; }
   body {
-<<<<<<< HEAD
     background: var(--site-background);
     background-attachment: fixed;
-=======
-    background-color: var(--color-background);
->>>>>>> 931f703bc60bfd0a0a14ef5856aed5c013f11bb4
     color: var(--color-foreground);
     font-family: var(--font-display);
     -webkit-font-smoothing: antialiased;
@@ -215,11 +208,7 @@ html.lenis, html.lenis body { height: auto; }
 
 .hero-ecosystem-orbit {
   position: absolute;
-<<<<<<< HEAD
   right: 2rem;
-=======
-  right: -6rem;
->>>>>>> 931f703bc60bfd0a0a14ef5856aed5c013f11bb4
   top: 50%;
   width: min(48vw, 42rem);
   aspect-ratio: 1;
@@ -238,43 +227,119 @@ html.lenis, html.lenis body { height: auto; }
 .hero-ecosystem-orbit-ring {
   position: absolute;
   inset: 0;
-  border: 1.5px solid rgba(125, 211, 252, .32);
-  border-top-color: #7dd3fc;
-  border-right-color: #2dd4bf;
+  border: 1.5px solid rgba(125, 211, 252, .42);
   border-radius: 50%;
-  box-shadow: 0 0 28px rgba(125, 211, 252, .12), inset 0 0 28px rgba(125, 211, 252, .06);
   animation: hero-orbit 22s linear infinite;
 }
 
+.hero-ecosystem-orbit-ring-one {
+  border-color: rgba(56, 189, 248, .46);
+  border-top-color: #38bdf8;
+  box-shadow: 0 0 28px rgba(56, 189, 248, .16), inset 0 0 28px rgba(56, 189, 248, .07);
+}
+
 .hero-ecosystem-orbit-ring-two {
-  inset: 13%;
-  border-color: rgba(167, 139, 250, .32);
+  inset: 10%;
+  border-color: rgba(167, 139, 250, .46);
   border-bottom-color: #a78bfa;
-  border-left-color: #c084fc;
-  box-shadow: 0 0 28px rgba(167, 139, 250, .14), inset 0 0 28px rgba(167, 139, 250, .07);
+  box-shadow: 0 0 28px rgba(167, 139, 250, .16), inset 0 0 28px rgba(167, 139, 250, .07);
   animation-duration: 15s;
   animation-direction: reverse;
 }
 
+.hero-ecosystem-orbit-ring-three {
+  inset: 20%;
+  border-color: rgba(45, 212, 191, .46);
+  border-right-color: #2dd4bf;
+  box-shadow: 0 0 28px rgba(45, 212, 191, .16), inset 0 0 28px rgba(45, 212, 191, .07);
+  animation-duration: 18s;
+}
+
 @keyframes hero-orbit { to { transform: rotate(360deg); } }
 
-<<<<<<< HEAD
 @keyframes ecosystem-orbit {
   from { transform: rotate(0deg) translateX(2rem) rotate(0deg); }
   to { transform: rotate(360deg) translateX(2rem) rotate(-360deg); }
 }
 
-/* Scroll reveal for cards that live directly inside a section grid. */
+.card-orbit-dot {
+  animation: card-orbit 4.8s linear infinite;
+}
+
+@keyframes card-orbit {
+  from { transform: translate(-50%, -50%) rotate(0deg) translateX(3.5rem) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg) translateX(3.5rem) rotate(-360deg); }
+}
+
+.client-voices-marquee {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.client-voices-track {
+  animation: client-voices-roll 34s linear infinite;
+}
+
+.client-voices-marquee:hover .client-voices-track {
+  animation-play-state: paused;
+}
+
+@keyframes client-voices-roll {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-50% - .75rem)); }
+}
+
+.client-logo-marquee {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.client-logo-track {
+  animation: client-logo-roll 28s linear infinite;
+}
+
+.client-logo-marquee:hover .client-logo-track {
+  animation-play-state: paused;
+}
+
+@keyframes client-logo-roll {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-33.333% - .5rem)); }
+}
+
+/* Premium reveal and hover treatment for every homepage card. */
 .grid-scroll-card {
+  position: relative;
   opacity: 0;
-  transform: translateY(2rem) scale(.985);
-  transition: opacity .65s cubic-bezier(.22, 1, .36, 1) var(--reveal-delay, 0ms), transform .65s cubic-bezier(.22, 1, .36, 1) var(--reveal-delay, 0ms);
-  will-change: opacity, transform;
+  transform: translateY(2.5rem) scale(.975);
+  transition: opacity .8s cubic-bezier(.22, 1, .36, 1) var(--reveal-delay, 0ms), transform .8s cubic-bezier(.22, 1, .36, 1) var(--reveal-delay, 0ms), box-shadow .45s ease, border-color .45s ease;
+  will-change: opacity, transform, box-shadow;
 }
 
 .grid-scroll-card-visible {
   opacity: 1;
   transform: translateY(0) scale(1);
+}
+
+.grid-scroll-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(115deg, transparent 20%, rgba(255,255,255,.1) 48%, transparent 76%);
+  transform: translateX(-115%);
+  transition: transform .8s cubic-bezier(.22, 1, .36, 1), opacity .35s ease;
+}
+
+.grid-scroll-card:hover {
+  box-shadow: 0 24px 65px rgba(0, 0, 0, .28), 0 0 34px rgba(125, 211, 252, .09);
+  border-color: rgba(255,255,255,.3);
+}
+
+.grid-scroll-card:hover::after {
+  opacity: 1;
+  transform: translateX(115%);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -286,7 +351,7 @@ main {
   background: transparent;
 }
 
-main > section {
+main section {
   background-color: transparent !important;
   border-top-width: 0 !important;
 }
@@ -295,8 +360,6 @@ footer {
   background-color: transparent !important;
 }
 
-=======
->>>>>>> 931f703bc60bfd0a0a14ef5856aed5c013f11bb4
 @media (max-width: 768px) {
   .hero-ecosystem-orbit { right: -9rem; top: 43%; width: 34rem; opacity: .35; }
   .hero-ecosystem-glow { width: 20rem; height: 20rem; }

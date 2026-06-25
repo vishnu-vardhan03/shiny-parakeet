@@ -9,7 +9,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row">
         {/* Left Side: Brand Logo, Social Media */}
         <div className="w-full md:w-[45%] flex flex-col items-center justify-center py-16 px-6 border-b md:border-b-0 border-zinc-800/60">
-          <h2 className="font-black text-8xl md:text-[9rem] lg:text-[10.5rem] xl:text-[12rem] tracking-wider text-zinc-800/90 select-none uppercase leading-none mb-6">
+          <h2 className="text-brand-gradient-flow font-black text-8xl md:text-[9rem] lg:text-[10.5rem] xl:text-[12rem] tracking-wider select-none uppercase leading-none mb-6 opacity-90 drop-shadow-[0_0_45px_rgba(125,211,252,0.16)]">
             4AT
           </h2>
           <span className="text-[10px] font-bold tracking-[0.3em] text-zinc-500 uppercase mb-4">
